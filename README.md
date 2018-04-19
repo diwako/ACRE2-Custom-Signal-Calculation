@@ -1,10 +1,9 @@
 # ACRE2 Custom Signal Calculation
-Custom Signal Calculations for ACRE2 to allow signal boosting and jamming.
 This script adds an additional layer to ACRE2’s signal calculation which allows to modify the output power and receive power of radios on the fly.
 
-With this script it is possible to either boost or jam a signal from any specific unit. The script will allow to set custom modifiers to units to modify the unit’s radios receiving and sending power.
+With this script it is possible to either boost or jam a signal from any specific unit. The script will allow setting custom modifiers to units to modify the unit’s radios receiving and sending power.
 
-Just copy the script "acre_custom_signal.sqf" into your mission folder and call it with
+Just copy the script "acre_custom_signal.sqf" into your mission folder and call it within initPlayerLocal.sqf with
 
 `[] call compile preProcessFileLineNumbers "scripts\diwako\acre_custom_signal.sqf";`\
 With this the custom signal calculation is active!
