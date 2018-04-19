@@ -1,0 +1,23 @@
+class Header
+{
+  gameType = Coop;
+  minPlayers = 1;
+  maxPlayers = 1;
+};
+disabledAI = 1;
+
+OnLoadName = "ACRE Custom Signal";// Mission name (short)
+onLoadMission=""; // Longer description
+briefingName = "";
+overviewText = "";
+// loadScreen = "img_loading.jpg"; // custom load image
+author="diwako";
+
+//respawnOnStart = -1;
+respawn = BASE;
+respawnDelay = 4;
+respawnDialog = 0;
+
+// Debug (and CBA target debug)
+enableDebugConsole = 1;
+enableTargetDebug = 1;
