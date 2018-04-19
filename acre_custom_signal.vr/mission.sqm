@@ -16,10 +16,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={2254.061,11.07344,6178.3062};
-		dir[]={0.17731427,-0.40642881,-0.89640933};
-		up[]={0.078875199,0.91365272,-0.39874712};
-		aside[]={-0.9810853,9.8373857e-007,-0.19406407};
+		pos[]={2255.1958,11.07344,6178.4492};
+		dir[]={-0.04347451,-0.34708107,-0.93692058};
+		up[]={-0.016089242,0.93780649,-0.34676066};
+		aside[]={-0.9990226,1.0861986e-006,0.046355642};
 	};
 };
 binarizationWanted=0;
@@ -3107,8 +3107,8 @@ class Mission
 			class Attributes
 			{
 				condition="call{acre_player in thisList}";
-				onActivation="call{acre_player setVariable [""acre_send_power"", 0]; " \n "acre_player setVariable [""acre_receive_power"", 0]; " \n "hint ""Jammed!"";}";
-				onDeactivation="call{acre_player setVariable [""acre_send_power"", 1]; " \n "acre_player setVariable [""acre_receive_power"", 1]; " \n "hint ""Jam cleared!"";}";
+				onActivation="call{acre_player setVariable [""acre_send_power"", 0, true]; " \n "acre_player setVariable [""acre_receive_power"", 0, true]; " \n "hint ""Jammed!"";}";
+				onDeactivation="call{acre_player setVariable [""acre_send_power"", 1, true]; " \n "acre_player setVariable [""acre_receive_power"", 1, true]; " \n "hint ""Jam cleared!"";}";
 				sizeA=10;
 				sizeB=10;
 				sizeC=5;
@@ -3122,12 +3122,12 @@ class Mission
 		class Item2
 		{
 			dataType="Trigger";
-			position[]={2267.4434,5,6160};
+			position[]={2267.4431,5,6160};
 			class Attributes
 			{
 				condition="call{acre_player in thisList}";
-				onActivation="call{acre_player setVariable [""acre_send_power"", 10000]; " \n "acre_player setVariable [""acre_receive_power"", 10000]; " \n "hint ""Signal boosted!"";}";
-				onDeactivation="call{acre_player setVariable [""acre_send_power"", 1]; " \n "acre_player setVariable [""acre_receive_power"", 1]; " \n "hint ""Signal reset!"";}";
+				onActivation="call{acre_player setVariable [""acre_send_power"", 10000, true]; " \n "acre_player setVariable [""acre_receive_power"", 10000, true]; " \n "hint ""Signal boosted!"";}";
+				onDeactivation="call{acre_player setVariable [""acre_send_power"", 1, true]; " \n "acre_player setVariable [""acre_receive_power"", 1, true]; " \n "hint ""Signal reset!"";}";
 				sizeA=10;
 				sizeB=10;
 				sizeC=5;
