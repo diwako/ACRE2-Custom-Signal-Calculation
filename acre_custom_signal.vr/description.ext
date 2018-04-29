@@ -8,8 +8,8 @@ disabledAI = 1;
 
 OnLoadName = "ACRE Custom Signal";// Mission name (short)
 onLoadMission=""; // Longer description
-briefingName = "";
-overviewText = "";
+briefingName = "ACRE Custom Signal v3";
+overviewText = "This is my jam";
 // loadScreen = "img_loading.jpg"; // custom load image
 author="diwako";
 

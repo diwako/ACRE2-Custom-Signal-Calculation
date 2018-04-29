@@ -1,21 +1,35 @@
+{
+    private _compile = compileFinal preprocessFileLineNumbers (_x # 1);
+    missionNamespace setVariable[(_x # 0), _compile];
+} forEach
+[
+	["diw_acre_fnc_createRadioJammer","scripts\diwako\fn_createRadioJammer.sqf"],
+	["diw_acre_fnc_getPowerAfterJamming","scripts\diwako\fn_getPowerAfterJamming.sqf"],
+	["diw_acre_fnc_addJammerToPlayer","scripts\diwako\fn_addJammerToPlayer.sqf"]
+];
+
 if(!hasInterface) exitWith {};
 
 _customSignalFunc = {
 	params ["_f", "_mW", "_receiverClass", "_transmitterClass"];
-	
+
 	private _count = missionNamespace getVariable [_transmitterClass + "_running_count", 0];
 	if (_count == 0) then {
 		private _senderStrength = 1;
 		private _sender = "null";
+		private _mWnew = _mW;
 
 		_sender = [_transmitterClass] call acre_sys_components_fnc_findAntenna select 0 select 1;
 
 		if(!isNil "_sender" && {!isNull _sender}) then {
 			_senderStrength = (_sender getVariable ["acre_send_power",1]);
+			_mWnew = [_sender, _mWnew, _f] call diw_acre_fnc_getPowerAfterJamming;
 		} else {
 			_sender = "nilled";
 		};
-		_mWnew = _mW * _senderStrength;
+		_mWnew = [acre_player, _mWnew, _f] call diw_acre_fnc_getPowerAfterJamming;
+
+		_mWnew = _mWnew * _senderStrength;
 
 		_receiverStrength = acre_player getVariable ["acre_receive_power",1];
 
