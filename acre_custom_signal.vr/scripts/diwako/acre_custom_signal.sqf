@@ -1,3 +1,12 @@
+#define SIGNAL_MODEL_CASUAL        0
+#define SIGNAL_MODEL_LOS_SIMPLE    1
+#define SIGNAL_MODEL_LOS_MULTIPATH 2
+#define SIGNAL_MODEL_ITM           3
+#define SIGNAL_MODEL_ITWOM         4  // This model is for now disabled.
+
+#define SIGNAL_ENUMS SIGNAL_MODEL_CASUAL, SIGNAL_MODEL_LOS_SIMPLE, SIGNAL_MODEL_LOS_MULTIPATH, SIGNAL_MODEL_ITM
+#define SIGNAL_NAMES "Arcade", "LOS Simple", "LOS Multipath", "Longley-Rice (ITM) Experimental"
+
 {
     private _compile = compileFinal preprocessFileLineNumbers (_x # 1);
     missionNamespace setVariable[(_x # 0), _compile];
@@ -21,7 +30,7 @@ _customSignalFunc = {
 
 		_sender = [_transmitterClass] call acre_sys_components_fnc_findAntenna select 0 select 1;
 
-		if(!isNil "_sender" && {!isNull _sender}) then {
+		if (!isNil "_sender" && {!isNull _sender}) then {
 			_senderStrength = (_sender getVariable ["acre_send_power",1]);
 			_mWnew = [_sender, _mWnew, _f] call diw_acre_fnc_getPowerAfterJamming;
 		} else {
@@ -51,11 +60,20 @@ _customSignalFunc = {
 			private _txAntenna = _x;
 			{
 				private _rxAntenna = _x;
+				private _model = acre_sys_signal_signalModel;
+
+				// Make sure ITWOM is not used for the moment
+				if (_model > SIGNAL_MODEL_ITWOM || {_model < SIGNAL_MODEL_CASUAL}) then {
+					_model = SIGNAL_MODEL_LOS_MULTIPATH;  // Default to LOS Multipath if the model is out of range
+					acre_sys_signal_signalModel = _model;           // And make sure we do not use an invalid mode next time
+				};
+
 				_count = _count + 1;
-				private _id = format["%1_%2_%3_%4", _transmitterClass, (_txAntenna select 0), _receiverClass, (_rxAntenna select 0)];
+				private _id = format ["%1_%2_%3_%4", _transmitterClass, (_txAntenna select 0), _receiverClass, (_rxAntenna select 0)];
 				[
 					"process_signal",
 					[
+						_model,
 						_id,
 						(_txAntenna select 2),
 						(_txAntenna select 3),
@@ -70,7 +88,7 @@ _customSignalFunc = {
 						ACRE_SIGNAL_DEBUGGING,
 						acre_sys_signal_omnidirectionalRadios
 					],
-					true,
+					2,
 					acre_sys_signal_fnc_handleSignalReturn,
 					[_transmitterClass, _receiverClass]
 				] call acre_sys_core_fnc_callExt;
