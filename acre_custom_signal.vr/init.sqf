@@ -1,6 +1,3 @@
-// call this to activate the custom signal function!
-[] call compile preProcessFileLineNumbers "scripts\diwako\acre_custom_signal.sqf";
-
 /*==== Examples below ====*/
 /*
 // example to boost sending and receiving power on mission start
@@ -29,4 +26,4 @@ player setVariable ["acre_receive_power", 0.00001, true];
 // 4: Effective zone, distance to jammer which fully applies the full jamming strength
 // 5: Falloff zone, zone in which units are still affected, but the strengths gets linear worse of the jammer
 */
-[antenna, 5000, [[0,9000],9002], 50, 10] call diw_acre_fnc_createRadioJammer;
+[antenna, 100, [[0,9000],9002], 50, 10] call diw_acre_fnc_createRadioJammer;
