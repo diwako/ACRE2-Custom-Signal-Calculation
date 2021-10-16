@@ -21,3 +21,10 @@ respawnDialog = 0;
 // Debug (and CBA target debug)
 enableDebugConsole = 1;
 enableTargetDebug = 1;
+
+// VVVVVV this is the important part! VVVVVV
+class CfgFunctions {
+    createShortcuts = 1;
+    #include "scripts\acre_custom_signal_calc\funcs.hpp"
+};
+// if a CfgFunctions class already exists, just copy the "include" line into your existing class
