@@ -9,6 +9,8 @@ With this the custom signal calculation is active!
 
 You will _not be able_ to boost your radio signal across the whole map with this! ACRE2's algorithm has some hard limits for radios!
 
+You will need to set your ACRE's signal model to Arcade or LOS Multipath. LOS Simple will not work! LOS Multipath is ACRE's default signal model.
+
 ## Examples
 
 ### Boosting and crippling radios
